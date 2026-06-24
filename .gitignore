@@ -1,0 +1,45 @@
+# ---------------------------------------------------------------------------
+# Build outputs (CMake / Ninja / Make / CLion)
+# ---------------------------------------------------------------------------
+# CLI build dir (used by `cmake -S . -B build`)
+/build/
+# CLion per-profile build dirs (cmake-build-debug, cmake-build-debug-embedded, …)
+/cmake-build-*/
+
+# ---------------------------------------------------------------------------
+# Compiled artifacts (defense in depth — normally inside the build dirs above)
+# ---------------------------------------------------------------------------
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+*.uf2
+*.dis
+*.map
+*.a
+*.so
+
+# ---------------------------------------------------------------------------
+# CLion / IntelliJ IDE state
+# ---------------------------------------------------------------------------
+# Regenerated on first open; keep the repo free of machine-specific IDE config.
+/.idea/
+
+# ---------------------------------------------------------------------------
+# Editors & OS cruft
+# ---------------------------------------------------------------------------
+*~
+*.swp
+*.swo
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------------
+# CMake internals that sometimes leak into the source tree
+# ---------------------------------------------------------------------------
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json

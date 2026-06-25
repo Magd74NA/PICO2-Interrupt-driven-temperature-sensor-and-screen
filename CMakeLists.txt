@@ -45,7 +45,7 @@ add_executable(pi_pico2w
     src/startup.c
     src/board_led.c
 )
-# Compile only OUR code with C23 (gnu23 dialect via GCC); leave the SDK at C11.
+
 set_target_properties(pi_pico2w PROPERTIES C_STANDARD 23 C_STANDARD_REQUIRED ON)
 target_include_directories(pi_pico2w PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(pi_pico2w pico_stdlib)

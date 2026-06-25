@@ -42,6 +42,7 @@ pico_sdk_init()
 # --- The blink firmware ---
 add_executable(pi_pico2w
     src/main.c
+    src/startup.c
     src/board_led.c
 )
 # Compile only OUR code with C23 (gnu23 dialect via GCC); leave the SDK at C11.

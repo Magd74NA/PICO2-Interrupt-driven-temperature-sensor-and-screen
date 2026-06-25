@@ -8,19 +8,21 @@ local pico-sdk and wired up to match your existing embedded-CLion workflow
 
 ```
 src/main.c               application entry point (the blink loop)
+src/startup.c            application init layer (bring up all subsystems)
 src/board_led.c          on-board LED driver implementation
+include/startup.h        application init API
 include/board_led.h      on-board LED driver API
+docs/RESOURCES.md        curated C-SDK learning resources
 CMakeLists.txt           project + `flash` target
 arm-none-eabi-gcc.cmake  toolchain file for CLion's "Debug-embedded" profile
 pico_sdk_import.cmake    locates the SDK at $PICO_SDK_PATH (default /home/magd/pico/pico-sdk)
 ```
 
-`board_led` is a tiny module that shows the intended pattern: push
-board-specific hardware details behind a small API so `main()` stays clean.
-It hides the plain-Pico (GPIO LED) vs Pico W (CYW43-driven LED) difference
-behind `board_led_init()` / `board_led_set()`. Add new modules the same way
-(a `.c` in `src/`, a `.h` in `include/`, and append the `.c` to
-`pi_pico2w_SOURCES` in `CMakeLists.txt`).
+The template uses a clean three-layer split: `main.c` (entry + loop) →
+`startup` (init) → `board_led` (a hardware driver). Push board-specific
+hardware details behind small driver APIs so `main()` and `startup_init()`
+stay readable. Add new modules the same way (a `.c` in `src/`, a `.h` in
+`include/`, append the `.c` to the `add_executable` list in `CMakeLists.txt`).
 
 The build defaults to the **Pico 2 W** (`PICO_BOARD=pico2_w`, `PICO_PLATFORM=rp2350`).
 Override either with `-D` at configure time to target a different board.
